@@ -1,7 +1,6 @@
-#include "Pawn.h"
+#include "headers/Pawn.h"
 
 Pawn::Pawn(Vec2 position, Color color)
-    :
-    Piece{position, color}
+    : Piece{position, color}
 {
 }

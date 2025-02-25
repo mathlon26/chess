@@ -1,10 +1,10 @@
-#ifndef __PAWN__CHESS
-#define __PAWN__CHESS
+#ifndef __ROOK__CHESS
+#define __ROOK__CHESS
 
 #include "Piece.h"
 #include <vector>
 
-class Pawn : public Piece
+class Rook : public Piece
 {
 private:
     /* data */
@@ -12,7 +12,7 @@ private:
     bool isValidMove(Vec2 newPos, std::vector<Piece> &pieces) override;
 
 public:
-    Pawn(Vec2 position, Color color);
+    Rook(Vec2 position, Color color);
 };
 
-#endif // __PAWN__CHESS
+#endif // __ROOK__CHESS
