@@ -13,7 +13,9 @@ private:
 protected:
     Color m_color;
 
-    virtual bool isValidMove(Vec2 newPos, std::vector<Piece>& pieces) {};
+    virtual bool isValidMove(Vec2 newPos, std::vector<Piece> &pieces) {};
+    void moveTo(Vec2 newPos, std::vector<Piece> &pieces);
+
 public:
     Piece(Vec2 position, Color color);
 };

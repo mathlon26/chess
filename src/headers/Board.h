@@ -2,6 +2,7 @@
 #define __BOARD__CHESS
 
 #include <vector>
+#include <iostream>
 
 class Board
 {
@@ -11,15 +12,7 @@ private:
 public:
     Board(/* args */);
     ~Board();
+    void Draw();
 };
-
-Board::Board(/* args */)
-{
-    // Initialize the board with pieces
-}
-
-Board::~Board()
-{
-}
 
 #endif // __BOARD__CHESS
