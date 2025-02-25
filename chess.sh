@@ -4,7 +4,7 @@
 if [ "$1" == "run" ]; then
     echo "Running chess from ./dist..."
     pushd dist > /dev/null
-    ./chess.exe
+    ./chess
     popd > /dev/null
     exit 0
 fi
@@ -18,7 +18,7 @@ if [ "$1" == "build-run" ]; then
     g++ -o dist/chess src/*.cpp
     echo "Running chess from ./dist..."
     pushd dist > /dev/null
-    ./chess.exe
+    ./chess
     popd > /dev/null
     exit 0
 fi
