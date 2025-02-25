@@ -1,10 +1,12 @@
+#ifndef __GAME__CHESS
+#define __GAME__CHESS
+
 class Game
 {
 private:
-    /* data */
 public:
-    Game(/* args */);
+    Game();
     ~Game();
 };
 
-
+#endif // __GAME__CHESS
