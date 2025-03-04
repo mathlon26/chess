@@ -2,6 +2,19 @@
 #include <string>
 #include <iostream>
 
+std::vector<std::vector<Piece *>> Game::m_board{
+    {
+        {new Rook{Color::BLACK}, new Knight{Color::BLACK}, new Bishop{Color::BLACK}, new Queen{Color::BLACK}, new King{Color::BLACK}, new Bishop{Color::BLACK}, new Knight{Color::BLACK}, new Rook{Color::BLACK}, },
+        {new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, },
+        {new Rook{Color::WHITE}, new Knight{Color::WHITE}, new Bishop{Color::WHITE}, new Queen{Color::WHITE}, new King{Color::WHITE}, new Bishop{Color::WHITE}, new Knight{Color::WHITE}, new Rook{Color::WHITE}, }
+    }
+};
+
 void Game::parseInputToMove(const std::string &input, int &x0, int &y0, int &x1, int &y1)
 {
     if (input.length() >= 7 && input[2] == ' ' && input[3] == 't' && input[4] == 'o' && input[5] == ' ')
@@ -41,9 +54,9 @@ void Game::draw()
             if (m_board[i][j] == nullptr) {
                 std::cout << "__ "; // Empty square
             } else if (m_board[i][j]->getColor() == Color::WHITE) {
-                std::cout << "W" << m_board[i][j]->getToken() << ' '; // White piece
+                std::cout << "w" << m_board[i][j]->getToken() << ' '; // White piece
             } else {
-                std::cout << "B" << m_board[i][j]->getToken() << ' '; // Black piece
+                std::cout << "b" << m_board[i][j]->getToken() << ' '; // Black piece
             }
         }
         std::cout << "\n";
