@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Pawn.h"
 #include "Rook.h"
+#include "Bishop.h"
 #include <vector>
 
 class Game
@@ -15,14 +16,14 @@ private:
     bool *m_running;
 
     std::vector<std::vector<Piece*>> m_board{
-        {new Rook{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Rook{Color::BLACK}, },
+        {new Rook{Color::BLACK}, new Pawn{Color::BLACK}, new Bishop{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Bishop{Color::BLACK}, new Pawn{Color::BLACK}, new Rook{Color::BLACK}, },
         {new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, },
         {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
         {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
         {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
         {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
         {new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, },
-        {new Rook{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Rook{Color::WHITE}, }
+        {new Rook{Color::WHITE}, new Pawn{Color::WHITE}, new Bishop{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Bishop{Color::WHITE}, new Pawn{Color::WHITE}, new Rook{Color::WHITE}, }
     };
 
     void parseInputToMove(const std::string& input, int &x0, int &y0, int &x1, int &y1);
