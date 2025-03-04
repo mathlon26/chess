@@ -1,10 +1,20 @@
-#include "headers/Knight.h"
+#include "Knight.h"
 
-Knight::Knight(Vec2 position, Color color)
-    : Piece{position, color}
+Knight::Knight(Color _Color)
+    : Piece{_Color}
 {
 }
 
-bool Knight::isValidMove(Vec2 newPos, std::vector<Piece> &pieces)
+Knight::~Knight()
 {
+}
+
+bool Knight::isPossibleMove(int &x0, int &y0, int &x1, int &y1, std::vector<std::vector<Piece *>> &board)
+{
+    return false;
+}
+
+std::string Knight::getToken()
+{
+    return "H";
 }

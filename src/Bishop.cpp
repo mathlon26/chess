@@ -1,6 +1,20 @@
-#include "headers/Bishop.h"
+#include "Bishop.h"
 
-Bishop::Bishop(Vec2 position, Color color)
-    : Piece{position, color}
+Bishop::Bishop(Color _Color)
+    : Piece{_Color}
 {
+}
+
+Bishop::~Bishop()
+{
+}
+
+bool Bishop::isPossibleMove(int &x0, int &y0, int &x1, int &y1, std::vector<std::vector<Piece *>> &board)
+{
+    return true;
+}
+
+std::string Bishop::getToken()
+{
+    return "B";
 }

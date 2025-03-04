@@ -1,10 +1,20 @@
 #include <iostream>
-#include "Game.cpp"
-#include "Player.cpp"
-#include "Board.cpp"
+#include "Player.h"
+#include "Game.h"
 
-int main(int argc, char const *argv[])
+static bool running{true};
+static long long int count{0};
+
+int main()
 {
-    std::cout << "Hello World!";
+    Game game{&running};
+    game.draw();
+
+    while (running)
+    {
+        // New turen alternating between the black and white player
+        game.newTurn(count++ % 2 == 0);
+    }
+    
     return 0;
 }

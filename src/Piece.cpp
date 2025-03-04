@@ -1,11 +1,16 @@
 #include "Piece.h"
 
-Piece::Piece(Vec2 position, Color color)
-    : m_position{position},
-      m_color{color}
+Piece::Piece(Color _Color)
+    :
+    m_color{_Color}
 {
 }
 
-void Piece::moveTo(Vec2 newPos, std::vector<Piece> &pieces)
+Piece::~Piece()
 {
+}
+
+Color Piece::getColor()
+{
+    return m_color;
 }
