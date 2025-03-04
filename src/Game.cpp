@@ -1,8 +1,8 @@
-#include "Board.h"
+#include "Game.h"
 #include <string>
 #include <iostream>
 
-void Board::parseInputToMove(const std::string &input, int &x0, int &y0, int &x1, int &y1)
+void Game::parseInputToMove(const std::string &input, int &x0, int &y0, int &x1, int &y1)
 {
     if (input.length() >= 7 && input[2] == ' ' && input[3] == 't' && input[4] == 'o' && input[5] == ' ')
     {
@@ -18,52 +18,45 @@ void Board::parseInputToMove(const std::string &input, int &x0, int &y0, int &x1
     }
 }
 
-void Board::updateBoard()
+void Game::updateBoard()
 {
 }
 
-bool Board::isValidMove(Piece *_Selected, Piece *_Target, int &x0, int &y0, int &x1, int &y1)
+inline bool Game::isValidMove(Piece *_Selected, Piece *_Target, int &x0, int &y0, int &x1, int &y1)
 {
-    /*
-    
-    if (_Selected->isPossibleMove(x0, y0, x1, y1)  &&
-        canPieceReachTarget(_Selected, x0, y0, x1, y1)
-    )
-    {
-        return true;
-    }
-    return false;
-    */
-    return true;
+    return _Selected->isPossibleMove(x0, y0, x1, y1, m_board);
 }
 
-void Board::draw()
+
+void Game::draw()
 {
     std::cout <<  "\033[6;0H";
+    std::cout << "  0  1  2  3  4  5  6  7\n";
     for (int i = 0; i < 8; ++i) {
-        std::cout << i << " "; // Row numbering (8 to 1)
+        std::cout << i << " ";
         for (int j = 0; j < 8; ++j) {
             if (m_board[i][j] == nullptr) {
-                std::cout << ". "; // Empty square
+                std::cout << "__ "; // Empty square
             } else if (m_board[i][j]->getColor() == Color::WHITE) {
-                std::cout << "W "; // White piece
+                std::cout << "W" << m_board[i][j]->getToken() << ' '; // White piece
             } else {
-                std::cout << "B "; // Black piece
+                std::cout << "B" << m_board[i][j]->getToken() << ' '; // Black piece
             }
         }
         std::cout << "\n";
     }
-    std::cout << "  0 1 2 3 4 5 6 7\n"; // Column lettering
 }
 
-Board::Board(Player *_PlayerWhite, Player *_PlayerBlack)
-    : m_playerWhite{_PlayerWhite},
-      m_playerBlack{_PlayerBlack}
+Game::Game()
+    : m_playerWhite{new Player{Color::WHITE}},
+      m_playerBlack{new Player{Color::BLACK}}
 {
 }
 
-Board::~Board()
+Game::~Game()
 {
+    delete m_playerWhite;
+    delete m_playerBlack;
     for (auto& row : m_board) {
         for (auto& piece : row) {
             delete piece;
@@ -71,7 +64,7 @@ Board::~Board()
     }
 }
 
-void Board::newTurn(bool _WhiteTurn)
+void Game::newTurn(bool _WhiteTurn)
 {
 
     Player *playerOnTurn{_WhiteTurn ? m_playerWhite : m_playerBlack};

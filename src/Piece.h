@@ -6,12 +6,13 @@
 
 class Piece
 {
-private:
+protected:
     Color m_color;
 public:
     Piece(Color _Color);
     ~Piece();
-
+    virtual bool isPossibleMove(int &x0, int &y0, int &x1, int &y1, std::vector<std::vector<Piece*>> &board) {return true;};
+    virtual std::string getToken() {return " ";};
     Color getColor();
 };
 
