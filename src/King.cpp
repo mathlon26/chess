@@ -1,10 +1,8 @@
 #include "King.h"
 
 King::King(Color _Color)
-    :
-    Piece{_Color}
+    : Piece{_Color}
 {
-
 }
 
 King::~King()

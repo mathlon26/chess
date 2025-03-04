@@ -1,8 +1,7 @@
 #include "Bishop.h"
 
 Bishop::Bishop(Color _Color)
-    :
-    Piece{_Color}
+    : Piece{_Color}
 {
 }
 

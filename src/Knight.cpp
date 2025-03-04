@@ -1,8 +1,7 @@
 #include "Knight.h"
 
 Knight::Knight(Color _Color)
-    :
-    Piece{_Color}
+    : Piece{_Color}
 {
 }
 
