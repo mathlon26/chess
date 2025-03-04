@@ -24,6 +24,9 @@ void Game::updateBoard()
 
 inline bool Game::isValidMove(Piece *_Selected, Piece *_Target, int &x0, int &y0, int &x1, int &y1)
 {
+    if (x1 > 7 || x1 < 0 || y1 > 7 || y1 < 0)
+        return false;
+    
     return _Selected->isPossibleMove(x0, y0, x1, y1, m_board);
 }
 
@@ -47,9 +50,10 @@ void Game::draw()
     }
 }
 
-Game::Game()
+Game::Game(bool *running)
     : m_playerWhite{new Player{Color::WHITE}},
-      m_playerBlack{new Player{Color::BLACK}}
+      m_playerBlack{new Player{Color::BLACK}},
+      m_running{running}
 {
 }
 
