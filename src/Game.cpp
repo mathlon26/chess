@@ -2,6 +2,19 @@
 #include <string>
 #include <iostream>
 
+std::vector<std::vector<Piece *>> Game::m_board{
+    {
+        {new Rook{Color::BLACK}, new Knight{Color::BLACK}, new Bishop{Color::BLACK}, new Queen{Color::BLACK}, new King{Color::BLACK}, new Bishop{Color::BLACK}, new Knight{Color::BLACK}, new Rook{Color::BLACK}, },
+        {new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, new Pawn{Color::BLACK}, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, },
+        {new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, new Pawn{Color::WHITE}, },
+        {new Rook{Color::WHITE}, new Knight{Color::WHITE}, new Bishop{Color::WHITE}, new Queen{Color::WHITE}, new King{Color::WHITE}, new Bishop{Color::WHITE}, new Knight{Color::WHITE}, new Rook{Color::WHITE}, }
+    }
+};
+
 void Game::parseInputToMove(const std::string &input, int &x0, int &y0, int &x1, int &y1)
 {
     if (input.length() >= 7 && input[2] == ' ' && input[3] == 't' && input[4] == 'o' && input[5] == ' ')
@@ -26,30 +39,24 @@ inline bool Game::isValidMove(Piece *_Selected, Piece *_Target, int &x0, int &y0
 {
     if (x1 > 7 || x1 < 0 || y1 > 7 || y1 < 0)
         return false;
-
+    
     return _Selected->isPossibleMove(x0, y0, x1, y1, m_board);
 }
 
+
 void Game::draw()
 {
-    std::cout << "\033[6;0H";
+    std::cout <<  "\033[6;0H";
     std::cout << "  0  1  2  3  4  5  6  7\n";
-    for (int i = 0; i < 8; ++i)
-    {
+    for (int i = 0; i < 8; ++i) {
         std::cout << i << " ";
-        for (int j = 0; j < 8; ++j)
-        {
-            if (m_board[i][j] == nullptr)
-            {
+        for (int j = 0; j < 8; ++j) {
+            if (m_board[i][j] == nullptr) {
                 std::cout << "__ "; // Empty square
-            }
-            else if (m_board[i][j]->getColor() == Color::WHITE)
-            {
-                std::cout << "W" << m_board[i][j]->getToken() << ' '; // White piece
-            }
-            else
-            {
-                std::cout << "B" << m_board[i][j]->getToken() << ' '; // Black piece
+            } else if (m_board[i][j]->getColor() == Color::WHITE) {
+                std::cout << "w" << m_board[i][j]->getToken() << ' '; // White piece
+            } else {
+                std::cout << "b" << m_board[i][j]->getToken() << ' '; // Black piece
             }
         }
         std::cout << "\n";
@@ -67,10 +74,8 @@ Game::~Game()
 {
     delete m_playerWhite;
     delete m_playerBlack;
-    for (auto &row : m_board)
-    {
-        for (auto &piece : row)
-        {
+    for (auto& row : m_board) {
+        for (auto& piece : row) {
             delete piece;
         }
     }
@@ -87,12 +92,12 @@ void Game::newTurn(bool _WhiteTurn)
     Piece *selectedFile = nullptr;
     Piece *targetFile = nullptr;
 
-    while (selectedFile == nullptr ||
-           selectedFile->getColor() != playerOnTurn->getColor() ||
-           !isValidMove(selectedFile, targetFile, x0, y0, x1, y1))
+    while ( selectedFile == nullptr || 
+            selectedFile->getColor() != playerOnTurn->getColor() ||
+            ! isValidMove(selectedFile, targetFile, x0, y0, x1, y1)
+    )
     {
-        if (!first)
-        {
+        if (!first) {
             std::cerr << "Invalid input!\n";
             first = false;
         }
