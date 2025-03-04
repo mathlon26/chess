@@ -1,6 +1,5 @@
 #include <string>
 #include "Pawn.h"
-#include <math.h>
 
 
 Pawn::Pawn(Color _Color)
@@ -29,7 +28,7 @@ bool Pawn::isPossibleMove(int &x0, int &y0, int &x1, int &y1, std::vector<std::v
             return false;
 
         // Check all squares in the path are empty.
-        for (int i = 1; i <= abs(dy); i++)
+        for (int i = 1; i <= std::abs(dy); i++)
         {
             if (board[y0 + i * direction][x0] != nullptr)
                 return false;
@@ -40,7 +39,7 @@ bool Pawn::isPossibleMove(int &x0, int &y0, int &x1, int &y1, std::vector<std::v
     }
 
     // Capture move (diagonal)
-    if (abs(dx) == 1 && dy == direction)
+    if (std::abs(dx) == 1 && dy == direction)
     {
         if (board[y1][x1] != nullptr)
         {
