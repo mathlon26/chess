@@ -10,25 +10,31 @@
 #include "Knight.h"
 #include <vector>
 
-class Game
-{
-private:
-    Player* m_playerWhite;
-    Player* m_playerBlack;
-
-    bool *m_running;
-
-    static std::vector<std::vector<Piece*>> m_board;
-
-    void parseInputToMove(const std::string& input, int &x0, int &y0, int &x1, int &y1);
-    void updateBoard();
-    inline bool isValidMove(Piece *_Selected, Piece *_Target, int &x0, int &y0, int &x1, int &y1);
-public:
-    void draw();
-    Game(bool *running);
-    ~Game();
-
-    void newTurn(bool _WhiteTurn);
+class Game {
+    public:
+        // Public member functions
+        void newTurn(bool _WhiteTurn);
+        void draw();
+        void checkForCheckMate();
+        void parseInputToMove(const std::string &input, int &x0, int &y0, int &x1, int &y1);
+        bool isValidMove(Piece *_Selected, Piece *_Target, int &x0, int &y0, int &x1, int &y1);
+    
+        // Constructor & destructor
+        Game(bool *running);
+        ~Game();
+    
+        // Board and players (you may want to adjust their access specifiers as needed)
+        static std::vector<std::vector<Piece*>> m_board;
+    
+    private:
+        Player *m_playerWhite;
+        Player *m_playerBlack;
+        bool *m_running;
+    
+        // Declarations for checkmate helper functions
+        bool isKingInCheck(Color kingColor);
+        bool hasLegalMove(Color kingColor);
+        bool doesMoveRemoveCheck(int x0, int y0, int x1, int y1, Color kingColor);
 };
 
 
